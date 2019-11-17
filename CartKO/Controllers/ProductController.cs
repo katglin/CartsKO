@@ -22,39 +22,39 @@ namespace CartKO.Controllers
                     Price = 12.55
                 },
                 new Product {
-                    Id = 1,
+                    Id = 2,
                     Name = "Vegeterian soup",
-                    Price = 12.55
+                    Price = 9.99
                 },
                 new Product {
-                    Id = 1,
+                    Id = 3,
                     Name = "Gawaii pizza",
-                    Price = 12.55
+                    Price = 10.49
                 },
                 new Product {
-                    Id = 1,
+                    Id = 4,
                     Name = "Italian pasta",
-                    Price = 12.55
+                    Price = 22.45
                 },
                 new Product {
-                    Id = 1,
+                    Id = 5,
                     Name = "Mexico burrito",
-                    Price = 12.55
+                    Price = 19.55
                 },
                 new Product {
-                    Id = 1,
-                    Name = "Ukrainian pie",
-                    Price = 12.55
+                    Id = 6,
+                    Name = "Frensh pie",
+                    Price = 10.15
                 },
                 new Product {
-                    Id = 1,
-                    Name = "American coofee",
-                    Price = 12.55
+                    Id = 7,
+                    Name = "American coffee",
+                    Price = 24.99
                 },
                 new Product {
-                    Id = 1,
+                    Id = 8,
                     Name = "Japanese sushi",
-                    Price = 12.55
+                    Price = 15.25
                 }
             };
             return products;
