@@ -38,3 +38,7 @@ input {
 img {
     width: 100%;
 }
+
+tfoot tr td{
+    font-weight: bold;
+}

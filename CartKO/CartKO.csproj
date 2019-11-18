@@ -179,6 +179,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_ProductList.cshtml" />
     <Content Include="Content\stub.png" />
+    <Content Include="Views\Home\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@
                     <li>@Html.ActionLink("Products", "Index", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Total: $<span data-bind="text: TotalCost"></span></a></li>
+                    <li><a href="/Home/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Total: <span data-bind="text: TotalAmount"></span> / $<span data-bind="text: TotalCost"></span></a></li>
                 </ul>
             </div>
         </div>
