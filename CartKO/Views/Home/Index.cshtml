@@ -5,21 +5,22 @@
 <h3>@ViewBag.Message</h3>
 
 <container>
-    <div class="row product-list" data-bind="foreach: Products">
+    <div class="row product-list" data-bind="foreach: customerVM.Products">
         <div class="col-md-3 card product-item">
-            <img src="~/Content/stub.png" class="card-img-top">
+            <span data-bind="if: ImagePath"><img data-bind="attr:{src: ImagePath}" alt="Sorry, no image yet" class="card-img-top"></span>
+            <span data-bind="ifnot: ImagePath"><img src="~/Content/stub.png" alt="Sorry, no image yet" class="card-img-top"></span>
             <div class="card-body">
                 <h5 class="card-title" data-bind="text: Name"></h5>
                 <h6 class="card-text">Price: $<span data-bind="text: Price"></span></h6>
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default btn-number" data-bind="click: $parent.removeFromCart">
+                        <button type="button" class="btn btn-default btn-number" data-bind="click: $parent.customerVM.removeFromCart">
                             <span class="glyphicon glyphicon-minus"></span>
                         </button>
                     </span>
                     <input type="text" class="form-control input-number" data-bind="value: AmountInCart" min="0" max="100">
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default btn-number" data-bind="click: $parent.addToCart">
+                        <button type="button" class="btn btn-default btn-number" data-bind="click: $parent.customerVM.addToCart">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </span>

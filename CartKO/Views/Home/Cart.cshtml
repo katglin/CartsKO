@@ -1,5 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Cart";
+                /**/
+
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Cart";
 }
 
 <h2>Cart</h2>
@@ -13,7 +19,7 @@
         </tr>
     </thead>
 
-    <tbody data-bind="foreach: Cart">
+    <tbody data-bind="foreach: customerVM.Cart">
         <tr>
             <td data-bind="text: Product().Name"></td>
             <td data-bind="text: Amount"></td>
@@ -23,8 +29,30 @@
     <tfoot>
         <tr>
             <td>Total</td>
-            <td data-bind="text: TotalAmount"></td>
-            <td>$<span data-bind="text: TotalCost"></span></td>
+            <td data-bind="text: customerVM.TotalAmount"></td>
+            <td>$<span data-bind="text: customerVM.TotalCost"></span></td>
         </tr>
     </tfoot>
 </table>
+<div data-bind='if: customerVM.Cart().length'>
+    <a role="button" data-toggle="modal" href="#contacts" class="btn btn-success">Buy</a>
+    <button class="btn btn-danger" data-bind="click: customerVM.resetCart">Reset</button>
+</div>
+
+<div id="contacts" class="modal fade" tabindex="1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">How we can contact you</h3>
+    </div>
+    <div class="modal-body">
+        <label>Your username</label>
+        <input type="text" name="username" id="username" data-bind="value: customerVM.Username" />
+        <label>Random contact details</label>
+        <input type="text" name="contact" id="contact" value="" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn" aria-hidden="true" data-bind="click: customerVM.finishOrder">Ok</button>
+        <button data-dismiss="modal" class="btn btn-primary">Cancel</button>
+    </div>
+</div>
+

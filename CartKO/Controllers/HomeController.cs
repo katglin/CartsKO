@@ -8,6 +8,7 @@ namespace CartKO.Controllers
 {
     public class HomeController : Controller
     {
+        // Products List
         public ActionResult Index()
         {
             return View();

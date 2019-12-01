@@ -31,8 +31,10 @@ namespace CartKO
             bundles.Add(new ScriptBundle("~/bundles/cart").Include(
                       "~/Scripts/KnockoutModels/ProductModel.js",
                       "~/Scripts/KnockoutModels/CartModel.js",
-                      "~/Scripts/KnockoutModels/CartViewModel.js",
-                      "~/Scripts/KnockoutModels/CartInit.js"));
+                      "~/Scripts/KnockoutModels/CustomerViewModel.js",
+                      "~/Scripts/KnockoutModels/ManagerViewModel.js",
+                      "~/Scripts/KnockoutModels/CartInit.js"
+                      ));
         }
     }
 }

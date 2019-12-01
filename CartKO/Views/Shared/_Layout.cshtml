@@ -13,9 +13,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Products", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Manage", "Manage", "Manager")</li>
+                    <li>@Html.ActionLink("History", "History", "Order")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Home/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Total: <span data-bind="text: TotalAmount"></span> / $<span data-bind="text: TotalCost"></span></a></li>
+                    <li><a href="/Home/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Total: <span data-bind="text: customerVM.TotalAmount"></span> / $<span data-bind="text: customerVM.TotalCost"></span></a></li>
                 </ul>
             </div>
         </div>
