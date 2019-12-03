@@ -2,6 +2,7 @@
     var self = this;
     self.Items = ko.observableArray([]);
     self.Editable = ko.observable();
+    self.Filedata = ko.observable();
 
     self.TotalItemsAmount = ko.computed(function () {
         return self.Items().length;
@@ -48,8 +49,8 @@
             id: product.Id(),
           },
           success: function(response) {
-              if(response == 'True') {
-                  alert("The product was not bought before. It was successfully deleted");
+              if(response > 0) {
+                  alert("The product was successfully deleted");
                   self.Items(self.Items().filter(item => item.Id() != product.Id()));
               }
               else {
@@ -64,7 +65,20 @@
 
     self.saveItem = function (product, event) {
         var item = self.Items().find(item => item.Id() == product.Id());
-        item.EditMode(false);
+        if (self.Filedata()) {
+            item.ImagePath("/Images/" + self.Filedata().name);
+            // Upload product image
+            var formdata = new FormData();
+            formdata.append(self.Filedata().name, self.Filedata());
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Product/UploadImage');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        }
         $.ajax({
           url: "/Product/Save",
           type: "post",
@@ -72,5 +86,17 @@
             product: item,
           }
         });
+        item.EditMode(false);
+        //return false;
+    };
+
+    self.loadImage = function (fileData) {
+        self.Filedata(fileData);
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var currentItem = self.Items().find(item => item.Id() == self.Editable());
+            currentItem.ImagePath(e.target.result);
+        }
+        reader.readAsDataURL(fileData);
     };
 }

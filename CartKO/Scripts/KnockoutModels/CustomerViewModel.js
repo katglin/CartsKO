@@ -35,7 +35,13 @@
                 var amounts = JSON.parse(localStorage.getItem('amounts'));
                 $(products).each(function (index, product_name) {
                     for (i = 0; i < amounts[index]; i++) {
-                        cartViewModel.customerVM.addToCart(cartViewModel.customerVM.Products().find(x => x.Name() == product_name), amounts[index]);
+                        var product = cartViewModel.customerVM.Products().find(x => x.Name() == product_name);
+                        if (product) {
+                            cartViewModel.customerVM.addToCart(product, amounts[index]);
+                        }
+                        else {
+                            localStorage.removeItem(product_name)
+                        }
                     }
                 });
             }
@@ -87,7 +93,8 @@
     };
 
     self.finishOrder = function (event) {
-        var username = $(this).data('username)');
+        var username = self.Username(); //$(this).data('username)');
+        console.log(username);
         $.ajax({
             url: "/Order/Buy",
             type: "post",
@@ -96,7 +103,7 @@
                 username: username
             },
             success: function(response) {
-                alert("Thanks, you order will be processed within 10 minutes.");
+                alert(`Thanks, ${username}, you order will be processed within 10 minutes.`);
                 //self.resetCart();
             }
         });

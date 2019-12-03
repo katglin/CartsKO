@@ -66,6 +66,7 @@
   <ItemGroup>
     <None Include="CartDB.publish.xml" />
     <None Include="PostDeployScripts\Init\OrderStatusesInit.sql" />
+    <None Include="PostDeployScripts\Init\ProductsInit.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Products.sql" />

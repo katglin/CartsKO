@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public abstract class DapperRepository<T>: IDapperRepository<T> where T : class
+    public abstract class DapperRepository<T>: IDisposable, IDapperRepository<T> where T : class
     {
         private readonly string _tableName;
 
@@ -34,7 +34,7 @@ namespace DAL.Repositories
         /// Open new connection and return it for use
         /// </summary>
         /// <returns></returns>
-        private IDbConnection CreateConnection()
+        protected IDbConnection CreateConnection()
         {
             var conn = SqlConnection();
             conn.Open();
@@ -150,6 +150,10 @@ namespace DAL.Repositories
             updateQuery.Append(" WHERE Id=@Id");
 
             return updateQuery.ToString();
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

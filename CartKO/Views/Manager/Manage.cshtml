@@ -53,9 +53,13 @@
                     <button class="btn btn-info" data-bind="click: $parent.managerVM.editItem"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </span>
                 <span data-bind="if: EditMode">
+                    <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" data-bind="event: { change: function() { $parent.managerVM.loadImage($element.files[0]) } }">
+                </span>
+                <span data-bind="if: EditMode">
                     <button class="btn btn-info" data-bind="click: $parent.managerVM.saveItem"><span class="glyphicon glyphicon-save"></span> Save</button>
                 </span>
                 <button class="btn btn-danger" data-bind="click: $parent.managerVM.removeItem"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+
             </td>
         </tr>
     </tbody>
