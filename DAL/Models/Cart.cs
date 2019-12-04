@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class Cart
     {
-        public Product Products { get; set; }
+        public int ProductId { get; set; }
 
         public int Amount { get; set; }
     }

@@ -62,6 +62,7 @@
     <Folder Include="Tables" />
     <Folder Include="PostDeployScripts" />
     <Folder Include="PostDeployScripts\Init" />
+    <Folder Include="Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CartDB.publish.xml" />
@@ -75,6 +76,7 @@
     <Build Include="Tables\OrderStatuses.sql" />
     <Build Include="Tables\UserRoles.sql" />
     <None Include="PostDeployScripts\Init\UserRolesInit.sql" />
+    <Build Include="Stored Procedures\spGetOrderHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployScripts\Script.PostDeployment.sql" />

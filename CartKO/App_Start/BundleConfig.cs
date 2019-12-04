@@ -33,6 +33,7 @@ namespace CartKO
                       "~/Scripts/KnockoutModels/CartModel.js",
                       "~/Scripts/KnockoutModels/CustomerViewModel.js",
                       "~/Scripts/KnockoutModels/ManagerViewModel.js",
+                      "~/Scripts/KnockoutModels/OrderViewModel.js",
                       "~/Scripts/KnockoutModels/CartInit.js"
                       ));
         }

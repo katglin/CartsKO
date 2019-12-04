@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    public class Cart
+    public class User
     {
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
-        public int Amount { get; set; }
+        public string Username { get; set; }
     }
 }

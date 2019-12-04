@@ -1,13 +1,15 @@
 ﻿// Binding, init
 var cartViewModel = { 
     customerVM : new CustomerViewModel(),
-    managerVM : new ManagerViewModel()
+    managerVM: new ManagerViewModel(),
+    orderVM: new OrderViewModel()
 }
 $(document).ready(function () {
     //localStorage.clear();
     ko.applyBindings(cartViewModel);
     cartViewModel.customerVM.getProducts();
     cartViewModel.managerVM.getItems();
+    cartViewModel.orderVM.getOrders();
 });
 
 // Save chosed data in local storage on page reload/redirect

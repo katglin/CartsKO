@@ -87,6 +87,9 @@
           }
         });
         item.EditMode(false);
+        if (self.Filedata()) {
+            item.ImagePath("/Images/" + self.Filedata().name);
+        }
         //return false;
     };
 

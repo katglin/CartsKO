@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [ProductID] INT NOT NULL, 
+    [Amount] INT NOT NULL DEFAULT(1),
     [UserID] INT NOT NULL, 
     [CreatedDate] DATETIME2 NOT NULL DEFAULT (GETDATE()), 
     [UpdatedDate] DATETIME2 NULL, 

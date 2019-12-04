@@ -93,18 +93,24 @@
     };
 
     self.finishOrder = function (event) {
-        var username = self.Username(); //$(this).data('username)');
-        console.log(username);
+        var username = self.Username();
         $.ajax({
             url: "/Order/Buy",
             type: "post",
             data: { 
-                cart: self.Cart,
+                cart: self.Cart().map(item => {
+                    var cart_item = {};
+                    cart_item.ProductId = item.Product().Id;
+                    cart_item.Amount = item.Amount;
+                    return cart_item;
+                }),
                 username: username
             },
             success: function(response) {
                 alert(`Thanks, ${username}, you order will be processed within 10 minutes.`);
-                //self.resetCart();
+                //
+                self.resetCart();
+                $('#contacts').modal('hide');
             }
         });
     };

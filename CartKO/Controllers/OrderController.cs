@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Models;
+using BLL.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +15,20 @@ namespace CartKO.Controllers
             return View();
         }
 
-        public bool Buy(Object cart, string username)
+        public int Buy(IEnumerable<Cart> cart, string username)
         {
-            return true;
+            using (var orderService = new OrderService())
+            {
+                return orderService.CreateOrder(cart, username);
+            }
+        }
+
+        public void GetOrders()
+        {
+            using (var orderService = new OrderService())
+            {
+                orderService.GetOrderList();
+            }
         }
     }
 }

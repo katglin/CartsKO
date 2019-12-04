@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Models
+namespace DAL.Models
 {
-    public class Cart
+    public class User
     {
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
-        public int Amount { get; set; }
+        public string Username { get; set; }
     }
 }

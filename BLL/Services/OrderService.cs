@@ -20,23 +20,28 @@ namespace BLL.Services
         }
 
         // history
-        //public IEnumerable<Product> GetOrderList()
-        //{
-            //using (var productService = new ProductRepository())
-            //{
-            //    var config = new MapperConfiguration(cfg => cfg.CreateMap<DAL.Models.Product, Product>());
-            //    var mapper = config.CreateMapper();
-            //    return mapper.Map<IEnumerable<Product>>(productService.GetProducts());
-            //}
-       // }
-
-        public int CreateOrder(Cart cart)
+        public IEnumerable<Order> GetOrderList()
         {
             using (var orderRepo = new OrderRepository())
             {
+                orderRepo.GetOrders();
+            }
+        }
+
+        public int CreateOrder(IEnumerable<Cart> cart, string username)
+        {
+            using (var userRepo = new UserRepository())
+            using (var orderRepo = new OrderRepository())
+            {
+                var userId = userRepo.FindUserByUsername(username);
+                if (userId == 0)
+                {
+                    userId = userRepo.CreateUser(username);
+                }
+
                 var config = new MapperConfiguration(cfg => cfg.CreateMap<Cart, DAL.Models.Cart>());
                 var mapper = config.CreateMapper();
-                return productService.CreateOrder(mapper.Map<DAL.Models.Cart>(cart));
+                return orderRepo.CreateOrder(mapper.Map<IEnumerable<DAL.Models.Cart>>(cart), (int)userId);
             }
         }
 
