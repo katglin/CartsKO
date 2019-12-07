@@ -15,11 +15,18 @@ namespace DAL.Repositories
         {
         }
 
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<Product> GetProducts(ProductSearchModel searchModel)
         {
             using (var connection = CreateConnection())
             {
-                return connection.Query<Product>($"SELECT * FROM Products");
+                searchModel.SearchText = !string.IsNullOrWhiteSpace(searchModel.SearchText) ? searchModel.SearchText.ToLower() : "";
+                searchModel.SearchText = searchModel.SearchText.ToLower();
+                var sql = new StringBuilder($"SELECT * FROM Products WHERE LOWER(Name) LIKE '%{searchModel.SearchText}%'");
+                if (searchModel.MinPrice != null && searchModel.MaxPrice != null)
+                {
+                    sql.Append($" AND Price BETWEEN {searchModel.MinPrice} AND {searchModel.MaxPrice}");
+                }
+                return connection.Query<Product>(sql.ToString());
             }
         }
 

@@ -16,7 +16,7 @@ BEGIN
     VALUES ('Mexico burrito', 22.25, '/Images/2.jpeg');
 
     INSERT INTO PRODUCTS ([Name], Price, ImagePath)
-    VALUES ('Frensh pie', 17.90, '/Images/3.jpeg');
+    VALUES ('French pie', 17.90, '/Images/3.jpeg');
 
     INSERT INTO PRODUCTS ([Name], Price, ImagePath)
     VALUES ('American coffee', 19.0, 'https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/what-is-kosher-1296x728-feature.jpg');

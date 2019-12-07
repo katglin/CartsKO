@@ -8,14 +8,10 @@ namespace DAL.Models
 {
     public class Order
     {
-        public int Id { get; set; }
-        
         public string Username { get; set; }
-        public string ProductName { get; set; }
-        public int Amount { get; set; }
+        public string ProductList { get; set; }
+        public double TotalPrice { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedDate { get; set; }
-
-        //public virtual User User { get; set; }
-        //public virtual Product Product { get; set; }
     }
 }

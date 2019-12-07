@@ -14,11 +14,11 @@ namespace CartKO.Controllers
     public class ProductController : Controller
     {
         [HttpGet]
-        public JsonResult Get()
+        public JsonResult Get(ProductSearchModel searchModel)
         {
             using (var productService = new ProductService())
             {
-                var products = productService.GetProductList();
+                var products = productService.GetProductList(searchModel);
                 return Json(products, JsonRequestBehavior.AllowGet);
             }
         }

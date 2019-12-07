@@ -2,4 +2,34 @@
     ViewBag.Title = "History";
 }
 
-<h2>History</h2>
+<h2>History of orders</h2>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Products</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: orderVM.Orders">
+        <tr>
+            <td>
+                <span data-bind="text: Username"></span>
+            </td>
+            <td>
+                <span data-bind="text: ProductList"></span>
+            </td>
+            <td>
+                $<span data-bind="text: TotalPrice"></span>
+            </td>
+            <td>
+                <span data-bind="text: Status"></span>
+            </td>
+            <td>
+                <span data-bind="text: CreatedDate"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

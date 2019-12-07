@@ -15,6 +15,7 @@ namespace CartKO.Controllers
             return View();
         }
 
+        [HttpPost]
         public int Buy(IEnumerable<Cart> cart, string username)
         {
             using (var orderService = new OrderService())
@@ -23,11 +24,13 @@ namespace CartKO.Controllers
             }
         }
 
-        public void GetOrders()
+        [HttpGet]
+        public JsonResult GetOrders()
         {
             using (var orderService = new OrderService())
             {
-                orderService.GetOrderList();
+                var result = orderService.GetOrderList();
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
     }

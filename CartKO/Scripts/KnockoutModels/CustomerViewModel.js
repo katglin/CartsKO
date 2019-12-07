@@ -19,18 +19,47 @@
         return subamount;
     });
 
+    /* Filters */
+
+    self.SearchText = ko.observable("");
+    self.SelectedMinPrice = ko.observable();
+    self.SelectedMaxPrice = ko.observable();
+    
+    self.MinPrice = ko.computed(function () {
+        var min = Math.min(...self.Products().map(p => p.Price()));
+        if (!min || min == Infinity) min = 0;
+        return min;
+    });
+    self.MaxPrice = ko.computed(function () {
+        var max = Math.max(...self.Products().map(p => p.Price()));
+        if (!max || max == -Infinity) max = 100000;
+        return max;
+    });
+
+    /* Methods */
+
     self.getProducts = function () {
         self.Products.removeAll();
+        if (!self.SelectedMinPrice()) {
+            self.SelectedMinPrice(0);
+        }
+        if (!self.SelectedMaxPrice()) {
+            self.SelectedMaxPrice(100000);
+        }
+        console.log(self.SelectedMaxPrice());
         $.ajax({
           url: "/Product/Get",
           type: "get",
-          data: {},
+            data: { searchText: self.SearchText(), minPrice: self.SelectedMinPrice(), maxPrice: self.SelectedMaxPrice()},
           success: function(response) {
             $.each(response, function (key, value) {
                 self.Products.push(new Product(value.Id, value.Name, value.Price, value.Amount, value.ImagePath));
             });
+            self.SelectedMinPrice(self.MinPrice());
+            self.SelectedMaxPrice(self.MaxPrice());
 
-            if (localStorage.getItem('products') !== 'null' && JSON.parse(localStorage.getItem('products')).length && self.Products().length) {
+            if (localStorage.getItem('products') !== 'null' && JSON.parse(localStorage.getItem('products')).length && self.Products().length && self.Cart().length == 0) {
+                
                 var products = JSON.parse(localStorage.getItem('products'));
                 var amounts = JSON.parse(localStorage.getItem('amounts'));
                 $(products).each(function (index, product_name) {
@@ -115,3 +144,4 @@
         });
     };
 }
+

@@ -5,6 +5,19 @@
 <h3>@ViewBag.Message</h3>
 
 <container>
+    <form class="form-inline filters">
+        <span>Product name: </span>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="French pie" data-bind='value: customerVM.SearchText'>
+        <button type="submit" class="btn btn-primary mb-2" data-bind="click: customerVM.getProducts">Search</button>
+
+        <section class="range-slider">
+            <span class="rangeValues"><span data-bind="text: customerVM.SelectedMinPrice"></span> - <span data-bind="text: customerVM.SelectedMaxPrice"></span></span>
+            <input data-bind="value: customerVM.SelectedMaxPrice, attr: {min: customerVM.MinPrice, max: customerVM.MaxPrice, step: 0.01 }" type="range">
+            <input data-bind="value: customerVM.SelectedMinPrice, attr: {min: customerVM.MinPrice, max: customerVM.MaxPrice, step: 0.01 }" type="range">
+            <span class="rangeValuesLimits"><span class="left" data-bind="text: customerVM.MinPrice"></span><span class="right" data-bind="text: customerVM.MaxPrice"></span></span>
+        </section>
+    </form>
+
     <div class="row product-list" data-bind="foreach: customerVM.Products">
         <div class="col-md-3 card product-item">
             <span data-bind="if: ImagePath"><img data-bind="attr:{src: ImagePath}" alt="Sorry, no image yet" class="card-img-top"></span>
@@ -25,7 +38,6 @@
                         </button>
                     </span>
                 </div>
-
             </div>
         </div>
     </div>

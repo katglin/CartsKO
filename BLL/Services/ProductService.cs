@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Product = BLL.Models.Product;
 using AutoMapper;
+using ProductSearchModel = BLL.Models.ProductSearchModel;
 
 namespace BLL.Services
 {
@@ -20,13 +21,14 @@ namespace BLL.Services
         {
         }
 
-        public IEnumerable<Product> GetProductList()
+        public IEnumerable<Product> GetProductList(ProductSearchModel searchModel)
         {
             using (var productRepo = new ProductRepository())
             {
                 var config = new MapperConfiguration(cfg => cfg.CreateMap<DAL.Models.Product, Product>());
                 var mapper = config.CreateMapper();
-                return mapper.Map<IEnumerable<Product>>(productRepo.GetProducts());
+                var model = Mapper.GetMapper().Map<DAL.Models.ProductSearchModel>(searchModel);
+                return mapper.Map<IEnumerable<Product>>(productRepo.GetProducts(model));
             }
         }
 

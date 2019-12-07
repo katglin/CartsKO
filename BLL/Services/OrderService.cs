@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Product = BLL.Models.Product;
 using AutoMapper;
 using Cart = BLL.Models.Cart;
+using Order = BLL.Models.Order;
 
 namespace BLL.Services
 {
@@ -24,7 +25,10 @@ namespace BLL.Services
         {
             using (var orderRepo = new OrderRepository())
             {
-                orderRepo.GetOrders();
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<DAL.Models.Order,Order>());
+                var mapper = config.CreateMapper();
+                var result = orderRepo.GetOrders();
+                return mapper.Map<IEnumerable<Order>>(result);
             }
         }
 

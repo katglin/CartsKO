@@ -8,9 +8,9 @@
           type: "get",
           data: null,
           success: function(response) {
-            //$.each(response, function (key, value) {
-            //    self.Items.push(new Product(value.Id, value.Name, value.Price, value.Amount, value.ImagePath));
-            //});
+            $.each(response, function (key, value) {
+                self.Orders.push(new OrderItem(value));
+            });
           }
         });
     };
