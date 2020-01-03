@@ -19,11 +19,10 @@
 
     self.addItem = function (event) {
         if(!self.Items().find(item => item.Id() == -1)) {
-        var newItem = new Product(-1, "", 0.01, 0, "");
-        self.Items.push(newItem);
-        self.editItem(newItem);
+            var newItem = new Product(-1, "", 0.01, 0, "");
+            self.Items.push(newItem);
+            self.editItem(newItem);
         }
-
         var scrollingElement = (document.scrollingElement || document.body);
         scrollingElement.scrollTop = scrollingElement.scrollHeight;
     };
