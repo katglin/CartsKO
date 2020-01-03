@@ -30,6 +30,7 @@ namespace CartKO
                       "~/Scripts/knockout-3.5.1.js"));
             bundles.Add(new ScriptBundle("~/bundles/cart").Include(
                       "~/Scripts/Utils/DateHelper.js",
+                      "~/Scripts/Utils/ApiService.js",
                       "~/Scripts/KnockoutModels/ProductModel.js",
                       "~/Scripts/KnockoutModels/CartModel.js",
                       "~/Scripts/KnockoutModels/OrderModel.js",

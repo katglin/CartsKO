@@ -163,6 +163,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.5.1.debug.js" />
     <Content Include="Scripts\knockout-3.5.1.js" />
+    <Content Include="Scripts\Utils\ApiService.js" />
     <Content Include="Scripts\Utils\DateHelper.js" />
     <Content Include="Scripts\KnockoutModels\OrderModel.js" />
     <Content Include="Scripts\KnockoutModels\CartModel.js" />

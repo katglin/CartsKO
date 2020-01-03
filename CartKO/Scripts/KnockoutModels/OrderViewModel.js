@@ -3,15 +3,9 @@
     self.Orders = ko.observableArray([]);
 
     self.getOrders = function () {
-        $.ajax({
-          url: "/Order/GetOrders",
-          type: "get",
-          data: null,
-          success: function(response) {
-            $.each(response, function (key, value) {
-                self.Orders.push(new OrderItem(value));
-            });
-          }
+        var result = ApiService.GetOrders();
+        $.each(result, function (key, value) {
+            self.Orders.push(new OrderItem(value));
         });
     };
 }

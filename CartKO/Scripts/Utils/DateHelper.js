@@ -1,6 +1,11 @@
 ﻿class DateHelper {
     static IntToDateFormat(date) {
-        var dateFormated = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
-        return dateFormated.toLocaleString("en-US");
+        if (date) {
+            var dateFormated = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
+            if (dateFormated != 'Invalid Date') {
+                return dateFormated.toLocaleString("en-US");
+            }
+        }
+        return 'not specified';
     }
 }
