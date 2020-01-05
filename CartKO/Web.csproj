@@ -194,6 +194,7 @@
     <Content Include="Scripts\KnockoutModels\ManagerViewModel.js" />
     <Content Include="Views\Manager\Manage.cshtml" />
     <Content Include="Views\Order\History.cshtml" />
+    <Content Include="Scripts\KnockoutModels\CartViewModel.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
