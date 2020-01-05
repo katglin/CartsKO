@@ -1,5 +1,6 @@
 ﻿var Product = function (id, name, price, amount, imagePath) {
     var self = this;
+
     this.Id = ko.observable(id);
     this.Name = ko.observable(name);
     this.Price = ko.observable(price.toFixed(2));

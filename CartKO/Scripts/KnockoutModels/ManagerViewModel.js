@@ -10,25 +10,19 @@
 
     self.getItems = function () {
         self.Items.removeAll();
-        $.ajax({
-          url: "/Product/Get",
-          type: "get",
-          data: null,
-          success: function(response) {
-            $.each(response, function (key, value) {
-                self.Items.push(new Product(value.Id, value.Name, value.Price, value.Amount, value.ImagePath));
-            });
-          }
+        var filter = null;
+        var response = ApiService.GetProducts(filter);
+        $.each(response, function (key, value) {
+            self.Items.push(new Product(value.Id, value.Name, value.Price, value.Amount, value.ImagePath));
         });
     };
 
     self.addItem = function (event) {
         if(!self.Items().find(item => item.Id() == -1)) {
-        var newItem = new Product(-1, "", 0.01, 0, "");
-        self.Items.push(newItem);
-        self.editItem(newItem);
+            var newItem = new Product(-1, "", 0.01, 0, "");
+            self.Items.push(newItem);
+            self.editItem(newItem);
         }
-
         var scrollingElement = (document.scrollingElement || document.body);
         scrollingElement.scrollTop = scrollingElement.scrollHeight;
     };
@@ -42,25 +36,15 @@
     };
 
     self.removeItem = function (product, event) {
-        $.ajax({
-          url: "/Product/Delete",
-          type: "post",
-          data: { 
-            id: product.Id(),
-          },
-          success: function(response) {
-              if(response > 0) {
-                  alert("The product was successfully deleted");
-                  self.Items(self.Items().filter(item => item.Id() != product.Id()));
-              }
-              else {
-                  alert('You can\'t delete a product which was already bought by someone');
-              }
-          },
-          error: function(xhr) {
-              alert('You can\'t delete a product which was already bought by someone');
-          }
-        });
+        var id = product.Id();
+        var response = ApiService.DeleteProduct(id);
+        if (response == "1") {
+            alert("The product was successfully deleted");
+            self.Items(self.Items().filter(item => item.Id() != product.Id()));
+        }
+        else {
+            alert('You can\'t delete a product which was already bought by someone');
+        }
     };
 
     self.saveItem = function (product, event) {
@@ -68,31 +52,31 @@
         if (self.Filedata()) {
             item.ImagePath("/Images/" + self.Filedata().name);
             // Upload product image
-            var formdata = new FormData();
-            formdata.append(self.Filedata().name, self.Filedata());
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/Product/UploadImage');
-            xhr.send(formdata);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert(xhr.responseText);
+            self.uploadImage(item);
+        }
+        ApiService.CreateProduct(item);
+        item.EditMode(false);
+    };
+
+    // save selected image to file system and its path to database
+    self.uploadImage = function (item) {
+        var formdata = new FormData();
+        formdata.append(self.Filedata().name, self.Filedata());
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/Product/UploadImage');
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert(xhr.responseText);
+                if (self.Filedata()) {
+                    item.ImagePath("/Images/" + self.Filedata().name);
+                    self.Filedata(null);
                 }
             }
         }
-        $.ajax({
-          url: "/Product/Save",
-          type: "post",
-          data: { 
-            product: item,
-          }
-        });
-        item.EditMode(false);
-        if (self.Filedata()) {
-            item.ImagePath("/Images/" + self.Filedata().name);
-        }
-        //return false;
-    };
+    }
 
+    // display selected image in UI
     self.loadImage = function (fileData) {
         self.Filedata(fileData);
         var reader = new FileReader();

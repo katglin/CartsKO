@@ -46,15 +46,20 @@
   <ItemGroup>
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
-    <Content Include="Scripts\IndexTest.js" />
+    <Content Include="Scripts\Fakes\ProductFake.js" />
     <Content Include="Scripts\jasmine\boot.js" />
     <Content Include="Scripts\jasmine\console.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\Tests\customer-test.js" />
+    <Content Include="Scripts\Tests\manager-test.js" />
+    <Content Include="Scripts\Tests\date-helper-test.js" />
+    <Content Include="Scripts\Tests\cart-test.js" />
     <Content Include="TestReview.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

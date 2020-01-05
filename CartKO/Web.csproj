@@ -163,6 +163,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.5.1.debug.js" />
     <Content Include="Scripts\knockout-3.5.1.js" />
+    <Content Include="Scripts\Utils\ApiService.js" />
+    <Content Include="Scripts\Utils\DateHelper.js" />
     <Content Include="Scripts\KnockoutModels\OrderModel.js" />
     <Content Include="Scripts\KnockoutModels\CartModel.js" />
     <Content Include="Scripts\KnockoutModels\CustomerViewModel.js" />
@@ -192,6 +194,7 @@
     <Content Include="Scripts\KnockoutModels\ManagerViewModel.js" />
     <Content Include="Views\Manager\Manage.cshtml" />
     <Content Include="Views\Order\History.cshtml" />
+    <Content Include="Scripts\KnockoutModels\CartViewModel.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

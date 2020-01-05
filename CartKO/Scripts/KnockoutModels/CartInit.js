@@ -1,10 +1,4 @@
 ﻿// Binding, init
-var cartViewModel = { 
-    customerVM: new CustomerViewModel(),
-    managerVM: new ManagerViewModel(),
-    orderVM: new OrderViewModel()
-}
-
 $(document).ready(function () {
     //localStorage.clear();
     ko.applyBindings(cartViewModel);
